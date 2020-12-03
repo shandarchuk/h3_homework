@@ -1,5 +1,5 @@
 import uuid
-
+from logger import logger
 
 class Order:
     def __init__(self, customer, item, amount):
@@ -8,6 +8,10 @@ class Order:
         self.item = item
         self.amount = amount
         self.status = "New"
+
+        self.log = logger
+
+        self.log.info(f"New order from {customer} - {self}")
 
     def __str__(self):
         return f"Order {self.id}:\n{self.amount} x {self.item.title}, {self.item.price} per 1"
@@ -24,4 +28,4 @@ if __name__ == '__main__':
     i1 = Item("Banana", "Better than ever before", 799.0,
                 ("Golden", "Fresh Green"))
     o1 = Order(customer=c1, item=i1, amount=3)
-    print(o1)
+
